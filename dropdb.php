@@ -12,7 +12,7 @@ if(mysqli_query($conn, $query)){
 
     echo "banco de dados deletado";
     unset($_SESSION['user']);
-    header("refresh:1;url= /");
+    header("refresh:1;url= ./");
 }else{ 
     echo "erro ao deletar banco de dados";
 }
