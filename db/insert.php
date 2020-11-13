@@ -1,11 +1,10 @@
 <?php
 
-
 $insertProdutos = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Celular Motorola', 
-    '1200', 
+values(
+    'Celular Motorola',
+    '1200',
     '1080')
 
 
@@ -13,9 +12,9 @@ values(
 
 $insertProdutos2 = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Monitor DELL', 
-    '1400', 
+values(
+    'Monitor DELL',
+    '1400',
     '1250')
 
 
@@ -23,9 +22,9 @@ values(
 
 $insertProdutos3 = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Playstation 4', 
-    '1500', 
+values(
+    'Playstation 4',
+    '1500',
     '1350')
 
 
@@ -33,9 +32,9 @@ values(
 
 $insertProdutos4 = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Xbox One X', 
-    '3000', 
+values(
+    'Xbox One X',
+    '3000',
     '2600')
 
 
@@ -43,9 +42,9 @@ values(
 
 $insertProdutos5 = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Iphone XR', 
-    '5000', 
+values(
+    'Iphone XR',
+    '5000',
     '4500')
 
 
@@ -53,9 +52,9 @@ values(
 
 $insertProdutos6 = "
 insert into produtos(nome,precoantes,precodepois)
-values( 
-    'Notebook Gamer ACER', 
-    '3000', 
+values(
+    'Notebook Gamer ACER',
+    '3000',
     '2600')
 
 

@@ -2,7 +2,7 @@
 <?php
 session_start();
 //nosso include de conexão com o banco
-require("db/connection.php");
+require "db/connection.php";
 ?>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -17,25 +17,25 @@ and open the template in the editor.
     <link href="slick.css" rel="stylesheet" type="text/css"/>
     <link href="estilo.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-    
+
+
     <title>Loja Virtual</title>
 </head>
 <body>
-    
+
     <header class="menu-principal">
         <main>
-            
+
             <div class="header-1">
-                
+
                 <div class="logo">
                     <img src="img/loja.logo4.png" alt="imagem logo"/>
                 </div>
-                
+
             </div>
-           
-         
-           
+
+
+
                 <div class="redes-sociais">
                     <div class="busca">
                      <input placeholder="Search Something" type="text" />
@@ -55,8 +55,8 @@ and open the template in the editor.
                             <a href="https://twitter.com/">
                                 <img src="./img/tw.png"/>
                             </a>
-                        </li>                        
-                    </ul>                 
+                        </li>
+                    </ul>
             </div>
         </main>
     </header>
@@ -76,11 +76,11 @@ and open the template in the editor.
                     <li>
                         <a href="http://localhost/PROJETO2/produtos.html">Produtos</a>
                     </li>
-                    
+
 
                 </ul>
             </div>
-        
+
             <div>
                 <link href="main.css" rel="stylesheet" type="text/css"/>
 
@@ -96,13 +96,13 @@ and open the template in the editor.
       <hr>
       <label for="email"><b>Nome Completo</b></label>
       <input type="text" placeholder="Enter nome" name="nome" required>
-      
+
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
-      
+
       <label for="CPF"><b>CPF</b></label>
       <input type="text" placeholder="Enter CPF" name="cpf" required>
-      
+
       <label for="endereco"><b>Endereco</b></label>
       <input type="text" placeholder="Enter Endereco" name="endereco" required>
 
@@ -114,7 +114,7 @@ and open the template in the editor.
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
+
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
@@ -129,17 +129,17 @@ and open the template in the editor.
   </form>
 </div>
 <!-- <a href="controller/logout.php"> <button onclick="document.getElementById('id02').style.display='block'" style='width:auto;'>Login</button></a> -->
-<?php 
-          if($_SESSION['user'] == null){ 
-          echo "<button onclick="."document.getElementById('id02').style.display='block'"." style='width:auto;'>Login</button>";
-          }else{ 
-            echo "<button onclick="."logout()"." style='width:auto;'>".$_SESSION['user']."</button>";
-          }
-        ?>
+<?php
+if ($_SESSION['user'] == null) {
+    echo "<button onclick=" . "document.getElementById('id02').style.display='block'" . " style='width:auto;'>Login</button>";
+} else {
+    echo "<button onclick=" . "logout()" . " style='width:auto;'>" . $_SESSION['user'] . "</button>";
+}
+?>
         </button>
-        
+
         <div id="id02" class="moda2">
-  
+
         <form class="modal-content animate"  action="./controller/loginController.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Moda2">&times;</span>
@@ -152,12 +152,12 @@ and open the template in the editor.
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="senha" required>
-        
+
       <button type="submit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
-              
+
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
@@ -166,17 +166,17 @@ and open the template in the editor.
     </div>
   </form>
 </div>
-        <button onclick="<?php 
-        
-        if(isset($_SESSION['user'])){
-        echo "document.getElementById('id03')";
-        }else{ 
-          echo "document.getElementById('id02')";
-        }
-        
-        ?>.style.display='block'" style="width:auto;">Carrinho</button>
+        <button onclick="<?php
+
+if (isset($_SESSION['user'])) {
+    echo "document.getElementById('id03')";
+} else {
+    echo "document.getElementById('id02')";
+}
+
+?>.style.display='block'" style="width:auto;">Carrinho</button>
 <div id="id03" class="moda3">
-  
+
   <form class="moda3-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Moda">&times;</span>
@@ -198,7 +198,7 @@ and open the template in the editor.
             <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
             <label for="city"><i class="fa fa-institution"></i> City</label>
             <input type="text" id="city" name="city" placeholder="New York">
-            
+
 
             <div class="row">
               <div class="col-50">
@@ -245,7 +245,7 @@ and open the template in the editor.
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
         <input type="submit" value="Continue to checkout" class="btn">
- 
+
     </div>
   </div>
   <div class="col-25">
@@ -253,63 +253,61 @@ and open the template in the editor.
       <h4>Cart
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
-          <?php 
-            $total; 
-            foreach($_SESSION['cart'] as $quant){ 
-                  $total += $quant['quantidade']; 
-            }
+          <?php
+$total;
+foreach ($_SESSION['cart'] as $quant) {
+    $total += $quant['quantidade'];
+}
 
-          echo '<b>'.$total.'</b>
+echo '<b>' . $total . '</b>
         </span>
       </h4>
       <!-- <p><a href="#">Product 1</a> <span class="price">$15</span></p>
       <p><a href="#">Product 2</a> <span class="price">$5</span></p>
       <p><a href="#">Product 3</a> <span class="price">$8</span></p>
       <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->';
-      echo '<table>
+echo '<table>
       <thead>
-      <tr> 
+      <tr>
         <th>Nome</th>
         <th>Preço</th>
         <th>Quantidade</th>
       </tr>
       </thead>';
-    
-          
-             echo'
+
+echo '
             <tbody>';
-            foreach($_SESSION['cart'] as $arr){ 
-              echo'
+foreach ($_SESSION['cart'] as $arr) {
+    echo '
             <tr>
-              <td style="text-align: center">'.$arr['nome'].'</td>
-              <td style="text-align: center">R$'.$arr['preco'].'</td>
-              <td style="text-align: center">'.$arr['quantidade'].'x</td>
-              <td style="text-align: center"><a href="controller/carinhoadd.php?id='.$arr['id'].'" "><button type="button">Remover</button></a></td>
+              <td style="text-align: center">' . $arr['nome'] . '</td>
+              <td style="text-align: center">R$' . $arr['preco'] . '</td>
+              <td style="text-align: center">' . $arr['quantidade'] . 'x</td>
+              <td style="text-align: center"><a href="controller/carinhoadd.php?id=' . $arr['id'] . '" "><button type="button">Remover</button></a></td>
             </tr>';
-            } echo'
+}
+echo '
             </tbody>
-            
+
             </table>';
-          
 
-
-      ?>
+?>
       <hr>
       <p>Total <span class="price" style="color:black"><b>R$
-      <?php 
-      $fullprice;
-            foreach($_SESSION['cart'] as $price){ 
-              $fullprice += ($price['preco'] * $price['quantidade']); 
-            }
+      <?php
+$fullprice;
+foreach ($_SESSION['cart'] as $price) {
+    $fullprice += ($price['preco'] * $price['quantidade']);
+}
 
-            echo $fullprice;
-      ?>
+echo $fullprice;
+?>
       </b></span></p>
     </div>
   </div>
 </div>
 </div>
- 
+
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
@@ -318,8 +316,8 @@ and open the template in the editor.
 </div>
         </div>
 
-                
-                    
+
+
     </main>
     <div class="col-100">
         <div class="slider-principal">
@@ -333,133 +331,133 @@ and open the template in the editor.
     </div>
     </div>
     <?php
-      $query = "select * from produtos where idProduto = 1";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 1";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-  echo'  <div class="col-100 bloco-imagens-texto">
+echo '  <div class="col-100 bloco-imagens-texto">
         <div class="content" style="margin-left: 24%; float: left;">
             <div class="col-3 bloco-texto bloco-imagem">
                 <img src="./img/motorola.jpg" alt ="celular imagem">
-                <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br>
-                    Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+                <p><strike>Antes: R$ ' . $array['precoantes'] . '</strike> </br>
+                    Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>';
-            ?>
+?>
             <?php
-      $query = "select * from produtos where idProduto = 2";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 2";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-           echo  '<div class="col-3 bloco-texto bloco-imagem">
+echo '<div class="col-3 bloco-texto bloco-imagem">
                 <img src ="./img/monitor.jpeg" alt = "imagem monitor">
-                <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+                <p><strike>Antes: R$ ' . $array['precoantes'] . '</strike> </br> Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>';
 
-            ?>
+?>
    <?php
-      $query = "select * from produtos where idProduto = 3";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 3";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-           echo' <div class="col-3 bloco-texto bloco-imagem">
+echo ' <div class="col-3 bloco-texto bloco-imagem">
                 <img src="./img/ps4.jpg" alt = "ps4 imagem">
-                <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: R$ '.$array['precoantes'].' </strike> </br> Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+                <p><strike>Antes: R$ ' . $array['precoantes'] . ' </strike> </br> Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>
         </div>';
-        ?>
-          
+?>
+
 
           <?php
-      $query = "select * from produtos where idProduto = 4";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 4";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-        echo '<div class="content" style="margin-left: 24%; float: left;">
+echo '<div class="content" style="margin-left: 24%; float: left;">
             <div class="col-3 bloco-texto bloco-imagem">
                 <img src="./img/xbox.jpg" width="20" height = "20"/>
-                <p><b>'.$array['nome'].'</b></p>
-                
-                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+
+                <p><strike>Antes: R$ ' . $array['precoantes'] . '</strike> </br> Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>';
-            ?>
+?>
 
 <?php
-      $query = "select * from produtos where idProduto = 5";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 5";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-          echo  '<div class="col-3 bloco-texto">
+echo '<div class="col-3 bloco-texto">
                 <img  src="./img/iphone.jpg" width="260" height="250"/>
-                <p><b>'.$array['nome'].'</b></p>
-                <p> <strike>Antes: R$ '.$array['precoantes'].'</strike></br> Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+                <p> <strike>Antes: R$ ' . $array['precoantes'] . '</strike></br> Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>';
-            ?>
+?>
 
             <?php
-      $query = "select * from produtos where idProduto = 6";
-      $db = mysqli_query($conn, $query); 
-      $array = mysqli_fetch_array($db);
+$query = "select * from produtos where idProduto = 6";
+$db = mysqli_query($conn, $query);
+$array = mysqli_fetch_array($db);
 
-           echo '<div class="col-3 bloco-texto">
+echo '<div class="col-3 bloco-texto">
                 <img src="./img/acer.jpg" width="260" height = "250"/>
-                <p><b>'.$array['nome'].'</b></p>
-                <p><strike> Antes: R$ '.$array['precoantes'].' </strike> </br> Depois: R$ '.$array['precodepois'].'
+                <p><b>' . $array['nome'] . '</b></p>
+                <p><strike> Antes: R$ ' . $array['precoantes'] . ' </strike> </br> Depois: R$ ' . $array['precodepois'] . '
                 </p>
                 <form action="controller/carinhoadd.php" method="get">
                 <input type="number" value="1" name="quantidade">
-                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
-                <input name="nome" style="display:none" value="'.$array['nome'].'">
-                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <input name="id" style="display:none" value="' . $array['idProduto'] . '">
+                <input name="nome" style="display:none" value="' . $array['nome'] . '">
+                <input name="valor" style="display:none" value="' . $array['precodepois'] . '">
                 <button name="submit" type="submit">Adicionar ao carrinho</button>
-                </form>      
+                </form>
             </div>
         </div>
     </div>';
-    
-    ?>
+
+?>
 
     <div class="col-100 bloco-logos">
         <div class="content">
@@ -476,27 +474,27 @@ and open the template in the editor.
             <div class="col-4">
                 <img alt="samsung" title="samsung" src="img/samsung.png" />
             </div>
-        
-             
+
+
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/jquery-migrate.js"></script>
     <script type="text/javascript" src="./js/slick.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
     <script>
 
-    function logout(){ 
+    function logout(){
 var conf = confirm("Deseja deslogar do seu usuario? ");
 
-if(conf == true){ 
+if(conf == true){
     window.location.href="controller/logout.php";
 }
-}   
+}
 
-function carrinho(){ 
+function carrinho(){
   alert("Você precisa estar logado para acessar o carrinho")
 }
     </script>
-    
+
 </body>
 
 </html>
