@@ -17,7 +17,7 @@ and open the template in the editor.
     <link href="slick.css" rel="stylesheet" type="text/css"/>
     <link href="estilo.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+      
     
     <title>Loja Virtual</title>
 </head>
@@ -166,7 +166,15 @@ and open the template in the editor.
     </div>
   </form>
 </div>
-        <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Carrinho</button>
+        <button onclick="<?php 
+        
+        if(isset($_SESSION['user'])){
+        echo "document.getElementById('id03')";
+        }else{ 
+          echo "document.getElementById('id02')";
+        }
+        
+        ?>.style.display='block'" style="width:auto;">Carrinho</button>
 <div id="id03" class="moda3">
   
   <form class="moda3-content animate" action="/action_page.php" method="post">
@@ -258,27 +266,31 @@ and open the template in the editor.
       <p><a href="#">Product 2</a> <span class="price">$5</span></p>
       <p><a href="#">Product 3</a> <span class="price">$8</span></p>
       <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->';
+      echo '<table>
+      <thead>
+      <tr> 
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+      </tr>
+      </thead>';
     
-          foreach($_SESSION['cart'] as $arr){ 
-            echo '
-            <table>
-            <thead>
-            <tr> 
-              <th>Nome</th>
-              <th>Preço</th>
-              <th>Quantidade</th>
-            </tr>
-            </thead>
-            <tbody>
+          
+             echo'
+            <tbody>';
+            foreach($_SESSION['cart'] as $arr){ 
+              echo'
             <tr>
-              <td>'.$arr['nome'].'</td>
-              <td>R$'.$arr['preco'].'</td>
-              <td>'.$arr['quantidade'].'x</td>
-            </tr>
+              <td style="text-align: center">'.$arr['nome'].'</td>
+              <td style="text-align: center">R$'.$arr['preco'].'</td>
+              <td style="text-align: center">'.$arr['quantidade'].'x</td>
+              <td style="text-align: center"><a href="controller/carinhoadd.php?id='.$arr['id'].'" "><button type="button">Remover</button></a></td>
+            </tr>';
+            } echo'
             </tbody>
             
             </table>';
-          }
+          
 
 
       ?>
@@ -333,6 +345,13 @@ and open the template in the editor.
                 <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br>
                     Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button name="submit" type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>';
             ?>
             <?php
@@ -345,6 +364,13 @@ and open the template in the editor.
                 <p><b>'.$array['nome'].'</b></p>
                 <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button name="submit" type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>';
 
             ?>
@@ -358,6 +384,13 @@ and open the template in the editor.
                 <p><b>'.$array['nome'].'</b></p>
                 <p><strike>Antes: R$ '.$array['precoantes'].' </strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button name="submit" name="submit" type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>
         </div>';
         ?>
@@ -375,6 +408,13 @@ and open the template in the editor.
                 
                 <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button name="submit" type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>';
             ?>
 
@@ -388,6 +428,13 @@ and open the template in the editor.
                 <p><b>'.$array['nome'].'</b></p>
                 <p> <strike>Antes: R$ '.$array['precoantes'].'</strike></br> Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button name="submit" type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>';
             ?>
 
@@ -406,7 +453,7 @@ and open the template in the editor.
                 <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
                 <input name="nome" style="display:none" value="'.$array['nome'].'">
                 <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
-                <button type="submit">Adicionar ao carrinho</button>
+                <button name="submit" type="submit">Adicionar ao carrinho</button>
                 </form>      
             </div>
         </div>
@@ -443,24 +490,13 @@ var conf = confirm("Deseja deslogar do seu usuario? ");
 if(conf == true){ 
     window.location.href="controller/logout.php";
 }
+}   
+
+function carrinho(){ 
+  alert("Você precisa estar logado para acessar o carrinho")
 }
-
-function chamarPhpAjax() {
-   $.ajax({
-      url:'carrinhoadd.php',
-      complete: function (response) {
-         alert(response.responseText);
-      },
-      error: function () {
-          alert('Erro');
-      }
-  });  
-
-  return false;
-}
-
-    
     </script>
+    
 </body>
 
 </html>
