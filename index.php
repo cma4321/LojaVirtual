@@ -245,15 +245,54 @@ and open the template in the editor.
       <h4>Cart
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
+          <?php 
+            $total; 
+            foreach($_SESSION['cart'] as $quant){ 
+                  $total += $quant['quantidade']; 
+            }
+
+          echo '<b>'.$total.'</b>
         </span>
       </h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+      <!-- <p><a href="#">Product 1</a> <span class="price">$15</span></p>
       <p><a href="#">Product 2</a> <span class="price">$5</span></p>
       <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->';
+    
+          foreach($_SESSION['cart'] as $arr){ 
+            echo '
+            <table>
+            <thead>
+            <tr> 
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>'.$arr['nome'].'</td>
+              <td>R$'.$arr['preco'].'</td>
+              <td>'.$arr['quantidade'].'x</td>
+            </tr>
+            </tbody>
+            
+            </table>';
+          }
+
+
+      ?>
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b>R$
+      <?php 
+      $fullprice;
+            foreach($_SESSION['cart'] as $price){ 
+              $fullprice += ($price['preco'] * $price['quantidade']); 
+            }
+
+            echo $fullprice;
+      ?>
+      </b></span></p>
     </div>
   </div>
 </div>
@@ -291,8 +330,8 @@ and open the template in the editor.
             <div class="col-3 bloco-texto bloco-imagem">
                 <img src="./img/motorola.jpg" alt ="celular imagem">
                 <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: '.$array['precoantes'].'</strike> </br>
-                    Depois: '.$array['precodepois'].'
+                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br>
+                    Depois: R$ '.$array['precodepois'].'
                 </p>
             </div>';
             ?>
@@ -304,7 +343,7 @@ and open the template in the editor.
            echo  '<div class="col-3 bloco-texto bloco-imagem">
                 <img src ="./img/monitor.jpeg" alt = "imagem monitor">
                 <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: '.$array['precoantes'].'</strike> </br> Depois:  '.$array['precodepois'].'
+                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
             </div>';
 
@@ -317,7 +356,7 @@ and open the template in the editor.
            echo' <div class="col-3 bloco-texto bloco-imagem">
                 <img src="./img/ps4.jpg" alt = "ps4 imagem">
                 <p><b>'.$array['nome'].'</b></p>
-                <p><strike>Antes: '.$array['precoantes'].' </strike> </br> Depois: '.$array['precodepois'].'
+                <p><strike>Antes: R$ '.$array['precoantes'].' </strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
             </div>
         </div>';
@@ -334,7 +373,7 @@ and open the template in the editor.
                 <img src="./img/xbox.jpg" width="20" height = "20"/>
                 <p><b>'.$array['nome'].'</b></p>
                 
-                <p><strike>Antes: '.$array['precoantes'].'</strike> </br> Depois: '.$array['precodepois'].'
+                <p><strike>Antes: R$ '.$array['precoantes'].'</strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
             </div>';
             ?>
@@ -347,7 +386,7 @@ and open the template in the editor.
           echo  '<div class="col-3 bloco-texto">
                 <img  src="./img/iphone.jpg" width="260" height="250"/>
                 <p><b>'.$array['nome'].'</b></p>
-                <p> <strike>Antes: '.$array['precoantes'].'</strike></br> Depois: '.$array['precodepois'].'
+                <p> <strike>Antes: R$ '.$array['precoantes'].'</strike></br> Depois: R$ '.$array['precodepois'].'
                 </p>
             </div>';
             ?>
@@ -360,8 +399,15 @@ and open the template in the editor.
            echo '<div class="col-3 bloco-texto">
                 <img src="./img/acer.jpg" width="260" height = "250"/>
                 <p><b>'.$array['nome'].'</b></p>
-                <p><strike> Antes: '.$array['precoantes'].' </strike> </br> Depois: '.$array['precodepois'].'
+                <p><strike> Antes: R$ '.$array['precoantes'].' </strike> </br> Depois: R$ '.$array['precodepois'].'
                 </p>
+                <form action="controller/carinhoadd.php" method="get">
+                <input type="number" value="1" name="quantidade">
+                <input name="id" style="display:none" value="'.$array['idProduto'].'"> 
+                <input name="nome" style="display:none" value="'.$array['nome'].'">
+                <input name="valor" style="display:none" value="'.$array['precodepois'].'">   
+                <button type="submit">Adicionar ao carrinho</button>
+                </form>      
             </div>
         </div>
     </div>';
@@ -390,6 +436,7 @@ and open the template in the editor.
     <script type="text/javascript" src="./js/slick.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
     <script>
+
     function logout(){ 
 var conf = confirm("Deseja deslogar do seu usuario? ");
 
@@ -397,8 +444,24 @@ if(conf == true){
     window.location.href="controller/logout.php";
 }
 }
+
+function chamarPhpAjax() {
+   $.ajax({
+      url:'carrinhoadd.php',
+      complete: function (response) {
+         alert(response.responseText);
+      },
+      error: function () {
+          alert('Erro');
+      }
+  });  
+
+  return false;
+}
+
     
     </script>
 </body>
 
 </html>
+

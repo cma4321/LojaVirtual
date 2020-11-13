@@ -22,19 +22,9 @@ create table produtos(
     idProduto int(255) not null primary key auto_increment,
     nome varchar(255) not null, 
     precoantes varchar(255) not null, 
-    precodepois varchar(255) not null, 
+    precodepois varchar(255) not null 
 
 );
 
 
 "; 
-
-
-$carrinho = " 
-
-create table carrinho(
-    idCarrinho int(255) not null primary key auto_increment
-); 
-
-
-";

@@ -77,8 +77,10 @@ if(mysqli_query($conn, $insertProdutos)){
                         sleep(1);
                         echo "<script>window.location.reload()</script>";
                     }
-
                     sleep(5);
+                   
 
                     }
 
+
+                    
